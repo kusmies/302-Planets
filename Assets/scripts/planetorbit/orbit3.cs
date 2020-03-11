@@ -7,18 +7,19 @@ using UnityEngine;
 public class orbit3 : MonoBehaviour
 {
 
-    GameObject PauseMenuHolder;
 
+    GameObject PauseMenuHolder;
     public Transform orbitCenter;
+
+    public LineRenderer orbitPath;
     [Range(0, 5)]
     public float Timescale = 1.0f;
-    
-    public LineRenderer orbitPath;
     [Range(1, 10)] public float radius = 6;
     [Range(4, 32)] public int resolutions = 8;
     // Use this for initialization
     void Start()
     {
+
 
         orbitPath = GetComponent<LineRenderer>();
         orbitPath.loop = true;
@@ -28,28 +29,33 @@ public class orbit3 : MonoBehaviour
     void Update()
     {
 
-         
-    Time.timeScale = Timescale;
+        Time.timeScale = Timescale;
         Vector3 pos = FindOrbitPoint(Time.time, radius);
-    UpdatePoints();
+
+        transform.position = pos;
+        UpdatePoints();
 
     }
 
     private Vector3 FindOrbitPoint(float angle, float mag)
     {
+
+
+
         Vector3 pos = (orbitCenter == null) ? Vector3.zero : orbitCenter.position;
-        pos.z += Mathf.Cos(angle) * mag * 2f - orbitCenter.position.z;
-        pos.x += Mathf.Sin(angle) * mag-orbitCenter.position.x;
-        pos.y += Mathf.Sin(angle) * mag * .5f-orbitCenter.position.y;
+        pos.x += Mathf.Cos(angle) * radius - orbitCenter.position.x;
+        pos.y -= orbitCenter.position.y;
+        pos.z += Mathf.Sin(angle) * radius - orbitCenter.position.z;
         if (orbitCenter != null)
         {
             pos.x += orbitCenter.position.x;
-            pos.y += orbitCenter.position.y;
-
-            pos.z += orbitCenter.position.z;
+            pos.z += Mathf.Cos(angle) * mag * .4f - orbitCenter.position.z;
+            pos.y += Mathf.Sin(angle) * mag * 1.5f - orbitCenter.position.y;
         }
         return pos;
+
     }
+
 
     void UpdatePoints()
     {
@@ -66,8 +72,5 @@ public class orbit3 : MonoBehaviour
         orbitPath.positionCount = resolutions;
         orbitPath.SetPositions(points);
 
-
-
     }
-
 }

@@ -20,11 +20,7 @@ public class Planet : MonoBehaviour
         public void Button_click()
     {
   
-        if(ButtonClick ==6)
-        {
-            ButtonClick = 1;
-        }
-
+      
         ButtonClick += 1;
     }
   
@@ -95,9 +91,13 @@ public class Planet : MonoBehaviour
 
 
         }
+        if (ButtonClick == 6)
+        {
+            ButtonClick -= 5;
+        }
 
     }
-  
+
 
 
 }
