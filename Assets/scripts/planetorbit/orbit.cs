@@ -13,7 +13,7 @@ public class orbit : MonoBehaviour
    
     public LineRenderer orbitPath;
     [Range(0, 5)]
-    public float Timescale = 1.0f;
+    public float time = 1.0f;
     [Range(1, 10)] public float radius = 6;
     [Range(4, 32)] public int resolutions = 8;
     // Use this for initialization
@@ -29,7 +29,7 @@ public class orbit : MonoBehaviour
     void Update()
     {
         
-        Time.timeScale = Timescale;
+        Time.timeScale = time;
         Vector3 pos = FindOrbitPoint(Time.time, radius);
 
         transform.position = pos;
