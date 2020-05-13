@@ -12,7 +12,7 @@ public class orbit2 : MonoBehaviour
 
     public LineRenderer orbitPath;
     [Range(0, 5)]
-    public float Timescale = 1.0f;
+     float timey;
     
     [Range(1, 10)] public float radius = 6;
     [Range(4, 32)] public int resolutions = 8;
@@ -27,7 +27,8 @@ public class orbit2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Time.timeScale = Timescale;
+        Time.timeScale = timey;
+
         Vector3 pos = FindOrbitPoint(Time.time, radius);
 
         transform.position = pos;

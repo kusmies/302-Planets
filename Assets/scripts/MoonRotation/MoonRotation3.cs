@@ -5,7 +5,10 @@ using UnityEngine;
 public class MoonRotation3 : MonoBehaviour
 {
     GameObject PauseMenuHolder;
-
+    public bool pausing8;
+    public bool forward8;
+    public bool playing8;
+    public bool timerewind8;
 
     public Transform target;
     float x = 0f;
@@ -17,9 +20,31 @@ public class MoonRotation3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         
-    Time.timeScale = Timescale;
-       
-    transform.Rotate(-.4f * Time.timeScale, -.09f *Time.timeScale, 1f* Time.timeScale);
+        if (playing8 == true)
+        {
+            Timescale = 1;
+
+            Time.timeScale = Timescale;
+
+            transform.Rotate(-.4f * Timescale, -.09f * Timescale, 1f * Timescale);
+        }
+        if (pausing8 == true)
+        {
+            Timescale = 0;
+
+            Time.timeScale = Timescale;
+
+            transform.Rotate(-.4f * Timescale, -.09f * Timescale, 1f * Timescale);
+        }
+        if (forward8 == true)
+        {
+            Timescale = 2;
+
+            Time.timeScale = Timescale;
+
+            transform.Rotate(-.4f * Timescale, -.09f * Timescale, 1f * Timescale);
+        }
+
+
     }
 }

@@ -7,7 +7,10 @@ public class PlanetRotation2 : MonoBehaviour
     GameObject PauseMenuHolder;
     [Range(0, 5)]
     public float Timescale = 1.0f;
-    
+    public bool pausing2;
+    public bool forward2;
+    public bool playing2;
+    public bool timerewind2;
     public Transform target;
     float x = 0f;
     float y = 0f;
@@ -15,9 +18,31 @@ public class PlanetRotation2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    Time.timeScale = Timescale;
+        if (playing2 == true)
+        {
+            Timescale = 1;
 
-        transform.Rotate(0, 0, .50f * Timescale) ;
+            Time.timeScale = Timescale;
+
+            transform.Rotate(0 * Time.time * Timescale, 0 * Time.time * Timescale, .50f * Time.time * Timescale);
+        }
+        if (pausing2 == true)
+        {
+            Timescale = 0;
+            Time.timeScale = Timescale;
+            transform.Rotate(0 * Time.time * Timescale, 0 * Time.time * Timescale, .50f * Time.time * Timescale);
+
+
+        }
+
+        if (forward2 == true)
+        {
+            Timescale = 2;
+            Time.timeScale = Timescale;
+            transform.Rotate(0 * Time.time * Timescale, 0 * Time.time * Timescale, .50f * Time.time * Timescale);
+
+
+        }
+
     }
 }

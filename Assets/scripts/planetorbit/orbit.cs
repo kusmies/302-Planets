@@ -10,31 +10,38 @@ public class orbit : MonoBehaviour
 
     GameObject PauseMenuHolder;
     public Transform orbitCenter;
-   
+    Pause pausing;
     public LineRenderer orbitPath;
     [Range(0, 5)]
-    public float time = 1.0f;
+    public float Timescale;
     [Range(1, 10)] public float radius = 6;
     [Range(4, 32)] public int resolutions = 8;
     // Use this for initialization
     void Start()
-    {        
-
-
+    {
+        pausing = GetComponent<Pause>();
+         
         orbitPath = GetComponent<LineRenderer>();
         orbitPath.loop = true;
+
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
+
+       
+            Timescale = 1;
+            Time.timeScale = Timescale;
+
+            Vector3 pos = FindOrbitPoint(Time.time *Time.timeScale, radius);
+
+            transform.position = pos;
+            UpdatePoints();
         
-        Time.timeScale = time;
-        Vector3 pos = FindOrbitPoint(Time.time, radius);
-
-        transform.position = pos;
-        UpdatePoints();
-
+     
     }
 
     private Vector3 FindOrbitPoint(float angle, float radius)
